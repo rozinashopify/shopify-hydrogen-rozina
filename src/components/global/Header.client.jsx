@@ -1,5 +1,5 @@
-import {Link, useUrl, useCart} from '@shopify/hydrogen';
-import {useWindowScroll} from 'react-use';
+import { Link, useUrl, useCart } from '@shopify/hydrogen';
+import { useWindowScroll } from 'react-use';
 
 import {
   Heading,
@@ -8,17 +8,18 @@ import {
   IconMenu,
   IconSearch,
   Input,
+  Logo,
 } from '~/components';
 
-import {CartDrawer} from './CartDrawer.client';
-import {MenuDrawer} from './MenuDrawer.client';
-import {useDrawer} from './Drawer.client';
+import { CartDrawer } from './CartDrawer.client';
+import { MenuDrawer } from './MenuDrawer.client';
+import { useDrawer } from './Drawer.client';
 
 /**
  * A client component that specifies the content of the header on the website
  */
-export function Header({title, menu}) {
-  const {pathname} = useUrl();
+export function Header({ title, menu }) {
+  const { pathname } = useUrl();
 
   const localeMatch = /^\/([a-z]{2})(\/|$)/i.exec(pathname);
   const countryCode = localeMatch ? localeMatch[1] : undefined;
@@ -59,8 +60,8 @@ export function Header({title, menu}) {
   );
 }
 
-function MobileHeader({countryCode, title, isHome, openCart, openMenu}) {
-  const {y} = useWindowScroll();
+function MobileHeader({ countryCode, title, isHome, openCart, openMenu }) {
+  const { y } = useWindowScroll();
 
   const styles = {
     button: 'relative flex items-center justify-center w-8 h-8',
@@ -105,7 +106,7 @@ function MobileHeader({countryCode, title, isHome, openCart, openMenu}) {
         to="/"
       >
         <Heading className="font-bold text-center" as={isHome ? 'h1' : 'h2'}>
-          {title}
+          <Logo />
         </Heading>
       </Link>
 
@@ -122,8 +123,8 @@ function MobileHeader({countryCode, title, isHome, openCart, openMenu}) {
   );
 }
 
-function DesktopHeader({countryCode, isHome, menu, openCart, title}) {
-  const {y} = useWindowScroll();
+function DesktopHeader({ countryCode, isHome, menu, openCart, title }) {
+  const { y } = useWindowScroll();
 
   const styles = {
     button:
@@ -141,9 +142,9 @@ function DesktopHeader({countryCode, isHome, menu, openCart, title}) {
     <header role="banner" className={styles.container}>
       <div className="flex gap-12">
         <Link className={`font-bold`} to="/">
-          {title}
+          <Logo className="h-10" width="200" />
         </Link>
-        <nav className="flex gap-8">
+        <nav className="flex gap-8 items-center">
           {/* Top level menu items */}
           {(menu?.items || []).map((item) => (
             <Link key={item.id} to={item.to} target={item.target}>
@@ -184,8 +185,8 @@ function DesktopHeader({countryCode, isHome, menu, openCart, title}) {
   );
 }
 
-function CartBadge({dark}) {
-  const {totalQuantity} = useCart();
+function CartBadge({ dark }) {
+  const { totalQuantity } = useCart();
 
   if (totalQuantity < 1) {
     return null;
