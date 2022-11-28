@@ -28,7 +28,6 @@ export default function Homepage() {
         <SeoForHomepage />
       </Suspense>
       <Suspense>
-        Some text for testing
         <HomepageContent />
       </Suspense>
     </Layout>
