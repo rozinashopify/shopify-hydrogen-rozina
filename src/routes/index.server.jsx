@@ -34,6 +34,10 @@ export default function Homepage() {
   );
 }
 
+/**
+ * Just adding some content here to test my staging environment
+ */
+
 function HomepageContent() {
   const {
     language: { isoCode: languageCode },
@@ -61,6 +65,7 @@ function HomepageContent() {
       {primaryHero && (
         <Hero {...primaryHero} height="full" top loading="eager" />
       )}
+      <h2>Staging environment test</h2>
       <ProductSwimlane
         data={featuredProducts.nodes}
         title="Featured Products"
