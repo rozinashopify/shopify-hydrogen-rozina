@@ -51,7 +51,7 @@ function HomepageContent() {
 
   const { heroBanners, featuredCollections, featuredProducts } = data;
 
-  // fill in the hero banners with placeholders if they're missing
+  // fill in the hero banners with placeholders if they're missing - add some text
   const [primaryHero, secondaryHero, tertiaryHero] = getHeroPlaceholder(
     heroBanners.nodes
   );
@@ -66,6 +66,7 @@ function HomepageContent() {
         title="Featured Products"
         divider="bottom"
       />
+      add some text
       {secondaryHero && <Hero {...secondaryHero} />}
       <FeaturedCollections
         data={featuredCollections.nodes}
