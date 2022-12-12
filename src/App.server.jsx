@@ -1,6 +1,7 @@
-import {Suspense} from 'react';
+import { Suspense } from 'react';
 import renderHydrogen from '@shopify/hydrogen/entry-server';
 import {
+  XYZ,
   FileRoutes,
   PerformanceMetrics,
   PerformanceMetricsDebug,
@@ -13,23 +14,27 @@ import {
   useServerAnalytics,
   Seo,
 } from '@shopify/hydrogen';
-import {HeaderFallback, EventsListener} from '~/components';
-import {NotFound} from '~/components/index.server';
+import { HeaderFallback, EventsListener } from '~/components';
+import { NotFound } from '~/components/index.server';
 
-function App({request}) {
+function App({ request }) {
   const pathname = new URL(request.normalizedUrl).pathname;
   const localeMatch = /^\/([a-z]{2})(\/|$)/i.exec(pathname);
   const countryCode = localeMatch ? localeMatch[1] : undefined;
 
   const isHome = pathname === `/${countryCode ? countryCode + '/' : ''}`;
 
-  const {customerAccessToken} = useSession();
+  const { customerAccessToken } = useSession();
 
   useServerAnalytics({
     shopify: {
       isLoggedIn: !!customerAccessToken,
     },
   });
+
+  console.log('Just logging something in App.server.jsx');
+  console.warn('Just warning about something in App.server.jsx');
+  console.error('Just throwing an error about something in App.server.jsx');
 
   return (
     <Suspense fallback={<HeaderFallback isHome={isHome} />}>
