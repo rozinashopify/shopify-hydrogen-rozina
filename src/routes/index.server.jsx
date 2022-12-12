@@ -66,6 +66,7 @@ function HomepageContent() {
         title="Featured Products"
         divider="bottom"
       />
+      Add message to Dec9TEst
       {secondaryHero && <Hero {...secondaryHero} />}
       <FeaturedCollections
         data={featuredCollections.nodes}
